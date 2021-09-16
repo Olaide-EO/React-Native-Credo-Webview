@@ -20,18 +20,15 @@ or
 
 for iOS: `cd iOS && pod install && cd ..`
 
-and that's it, you're all good to go!
 
-<img width="306" alt="Screenshot of library in action" src="./src/assets/widget.png">
-
-### Usage 1
+### Example Usage 
 
 ```javascript
 import React, { useState } from 'react';
 import  { Credo }  from 'credo-webview-for-reactnative';
 import { View, Text } from 'react-native';
 
-function Pay() {
+const Pay = () => {
   const [modalVisible, setModalVisible] = useState(false);
 
   const closeModal = () => setModalVisible(false);
@@ -84,14 +81,12 @@ function Pay() {
 
 ## [](https://github.com/Olaide-EO/React-Native-Credo-Webview)Contributions
 
-Want to help make this package even more awesome? [Read how to contribute](https://github.com/Olaide-EO/React-Native-Credo-Webview/blob/master/contribution.md) and feel free to send in your PR!
-
-## [](https://github.com/Olaide-EO/React-Native-Credo-Webview#licensing)Licensing
+Would you like to contribute to this package? [Read how to contribute](https://github.com/nugitech/react-native-credo-webview/blob/master/contribution.md) and send in your PR!
+<br/>
+## []()Licensing
 
 This project is licensed under MIT license.
 
-
-### Don't forget to star, like and share :)
 
 ## Contributors
 

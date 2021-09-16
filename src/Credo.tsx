@@ -1,11 +1,11 @@
-import React, { FC, useState, useRef } from "react";
-import { Modal, View, StyleSheet, ActivityIndicator } from "react-native";
-import { WebView, WebViewNavigation } from "react-native-webview";
-import { CredoProps } from "./types";
+import React, { FC, useState, useRef } from 'react'
+import { Modal, View, StyleSheet, ActivityIndicator } from 'react-native'
+import { WebView, WebViewNavigation } from 'react-native-webview'
+import { CredoProps } from './types'
 
 const Credo: FC<CredoProps> = ({
   amount,
-  currency = "NGN",
+  currency = 'NGN',
   customerEmail,
   customerName,
   customerPhoneNo,
@@ -17,10 +17,10 @@ const Credo: FC<CredoProps> = ({
   showModal = false,
   handleWebViewMessage,
 }) => {
-  const [isLoading, setisLoading] = useState(true);
-  const webView = useRef(null);
+  const [isLoading, setisLoading] = useState(true)
+  const webView = useRef(null)
 
-  const refString = referenceNo ? referenceNo : "";
+  const refString = referenceNo ? referenceNo : ''
 
   const runFirst = `
       function loadScript(scriptUrl) {
@@ -64,63 +64,63 @@ const Credo: FC<CredoProps> = ({
           console.error('Script loading failed! Handle this error');
         });
       
-    `;
+    `
   const messageReceived = (data: string) => {
-    const webResponse = JSON.parse(data);
+    const webResponse = JSON.parse(data)
     if (handleWebViewMessage) {
-      handleWebViewMessage(data);
+      handleWebViewMessage(data)
     }
     switch (webResponse.event) {
-      case "cancelled":
-        closeModal();
-        onCancel && onCancel({ status: "cancelled" });
-        break;
+      case 'cancelled':
+        closeModal()
+        onCancel && onCancel({ status: 'cancelled' })
+        break
 
-      case "successful":
-        closeModal();
+      case 'successful':
+        closeModal()
 
         if (onSuccess) {
           onSuccess({
-            status: "success",
+            status: 'success',
             data: webResponse,
-          });
+          })
         }
-        break;
+        break
 
       default:
         if (handleWebViewMessage) {
-          handleWebViewMessage(data);
+          handleWebViewMessage(data)
         }
-        break;
+        break
     }
-  };
+  }
 
   const onNavigationStateChange = (state: WebViewNavigation) => {
-    const { url } = state;
-    console.log(url);
-    console.log(state);
-  };
+    const { url } = state
+    console.log(url)
+    console.log(state)
+  }
 
   return (
-    <View style={{ backgroundColor: "rgba(0,0,0,0.5)" }}>
+    <View style={styles.wrapper}>
       <Modal
         style={{ flex: 1 }}
         visible={showModal}
-        animationType="slide"
+        animationType='slide'
         transparent={true}
       >
         <WebView
-          originWhitelist={["*"]}
+          originWhitelist={['*']}
           style={styles.webview}
-          source={{ html: require("./template").template() }}
-          onMessage={(e) => {
-            messageReceived(e.nativeEvent?.data);
+          source={{ html: require('./template').template() }}
+          onMessage={(e: any) => {
+            messageReceived(e.nativeEvent?.data)
           }}
           onLoadStart={() => setisLoading(true)}
           onLoadEnd={() => setisLoading(false)}
           onNavigationStateChange={onNavigationStateChange}
           cacheEnabled={false}
-          cacheMode={"LOAD_NO_CACHE"}
+          cacheMode={'LOAD_NO_CACHE'}
           javaScriptEnabled={true}
           injectedJavaScript={runFirst}
           ref={webView}
@@ -129,32 +129,35 @@ const Credo: FC<CredoProps> = ({
 
         {isLoading && (
           <View style={styles.loader}>
-            <ActivityIndicator size="large" color="#ffffff" />
+            <ActivityIndicator size='large' color='#ffffff' />
           </View>
         )}
       </Modal>
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
+  wrapper: {
+    backgroundColor: 'rgba(0,0,0,0.5)',
+  },
   webview: {
     flex: 1,
-    backgroundColor: "transparent",
+    backgroundColor: 'transparent',
     zIndex: 5,
   },
   webviewContainer: {
-    backgroundColor: "transparent",
+    backgroundColor: 'transparent',
     zIndex: 5,
   },
   loader: {
-    width: "100%",
-    height: "100%",
-    backgroundColor: "rgba(0,0,0,0.5)",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    position: "absolute",
+    width: '100%',
+    height: '100%',
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
     top: 0,
     left: 0,
     zIndex: 1,
@@ -162,8 +165,8 @@ const styles = StyleSheet.create({
   logo: {
     height: 35,
     width: 37,
-    resizeMode: "contain",
+    resizeMode: 'contain',
   },
-});
+})
 
-export default Credo;
+export default Credo
