@@ -6,6 +6,6 @@ export const template = () => `<!DOCTYPE html>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Credo</title>
   </head>
-    <body  onload="payWithCredo()" style="background-color:#fff;height:100vh">
+    <body  onload="payWithCredo()" style="background-color:transparent;height:100vh">
     </body>
 </html> `
