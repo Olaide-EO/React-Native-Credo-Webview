@@ -50,11 +50,11 @@ const Credo: FC<CredoProps> = ({
                 publicKey: '${publicKey}',
                 paymentOptions: ["CARD"],
                 callback: function(response){
-                      var resp = {event:'successful', transactionDet:response};
+                      var resp = {event:'successful', transactionDetails:response};
                         window.ReactNativeWebView.postMessage(JSON.stringify(resp))
                 },
-                onClose: function(){
-                    var resp = {event:'cancelled'};
+                onClose: function(status){
+                    var resp = {event:'cancelled', status: status };
                     window.ReactNativeWebView.postMessage(JSON.stringify(resp))
                 }
                 })
@@ -73,17 +73,16 @@ const Credo: FC<CredoProps> = ({
     switch (webResponse.event) {
       case 'cancelled':
         closeModal()
-        onCancel && onCancel({ status: 'cancelled' })
+        onCancel && onCancel(webResponse)
         break
 
       case 'successful':
         closeModal()
 
         if (onSuccess) {
-          onSuccess({
-            status: 'success',
-            data: webResponse,
-          })
+          onSuccess(
+           webResponse,
+          )
         }
         break
 

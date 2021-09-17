@@ -11,11 +11,11 @@ The package allows you accept payment using credo
 
 Add React-Native-Credo-WebView to your project by running;
 
-`npm install react-native-credo-webview react-native-webview`
+`npm install credo-webview-for-reactnative react-native-webview`
 
 or
 
-`yarn add react-native-credo-webview react-native-webview`
+`yarn add credo-webview-for-reactnative react-native-webview`
 
 
 for iOS: `cd iOS && pod install && cd ..`
@@ -59,7 +59,7 @@ const Pay = () => {
 
 ## API's
 
-#### []()All React-Native-Credo-WebView API
+#### []()All Credo-Webview-for-Reactnative API
 
 
 <br/>
@@ -79,7 +79,7 @@ const Pay = () => {
 | onSuccess     | `Function` |    ✔️      | Function to be called after a successful transaction. You can provide a function that looks like this: `(successResponse: SuccessResponse) => void;`                                                                                                              
 | onCancel    | `Function`  |          |  callback function if user cancels or payment transaction could not be verified. 
 
-## [](https://github.com/Olaide-EO/React-Native-Credo-Webview)Contributions
+## [](https://github.com/Olaide-EO/credo-webview-for-reactnative)Contributions
 
 Would you like to contribute to this package? [Read how to contribute](https://github.com/nugitech/react-native-credo-webview/blob/master/contribution.md) and send in your PR!
 <br/>
