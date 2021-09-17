@@ -54,7 +54,7 @@ const Credo: FC<CredoProps> = ({
                         window.ReactNativeWebView.postMessage(JSON.stringify(resp))
                 },
                 onClose: function(status){
-                    var resp = {event:'cancelled', status: status };
+                    var resp = {event:'closed', status: status };
                     window.ReactNativeWebView.postMessage(JSON.stringify(resp))
                 }
                 })
@@ -71,7 +71,7 @@ const Credo: FC<CredoProps> = ({
       handleWebViewMessage(data)
     }
     switch (webResponse.event) {
-      case 'cancelled':
+      case 'closed':
         closeModal()
         onCancel && onCancel(webResponse)
         break
