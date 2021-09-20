@@ -38,7 +38,7 @@ const Credo: FC<CredoProps> = ({
         });
       }
     
-     window.onload = loadScript('https://credo-js.nugitech.com/inline.js')
+     window.onload = loadScript('https://www.credocentral.com/inline.js')
         .then(() => {
               window.CredoCheckout({ 
                 amount: '${amount}',
